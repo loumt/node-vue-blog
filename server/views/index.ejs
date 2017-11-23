@@ -6,6 +6,10 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <input type="button" value="读取剪贴板内容" onclick="readClipboardData();" />
+    <br />
+    <textarea rows="20" cols="60" id="txtContent"></textarea>
   </body>
+  <script src='/javascript/jquery.min.js'></script>
+  <script src='/javascript/clipBoard.js'></script>
 </html>
