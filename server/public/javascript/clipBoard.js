@@ -1,71 +1,40 @@
 window.addEventListener('copy', this.checkClipboardCopy.bind(this), true); //ctrl +c
 window.addEventListener('cut', this.checkClipboardCut.bind(this), true); //ctrl + x
-window.addEventListener('paste', this.checkClipboardPaste.bind(this), true); //ctrl + v
+// window.addEventListener('paste', this.checkClipboardPaste.bind(this), true); //ctrl + v
 window.addEventListener('load',this.checkClipboardLoad.bind(this),true);// start at once
 
-// document.body.oncopy = function(){
-    // event.returnValue = false; 
-    // var txt_cr = document.selection.createRange().text; 
-    // var copy_cr = "本文来自我爱开发网, 原文地址：http://www.5idev.cn/p-javascript_oncopy.shtml"; 
-    // clipboardData.setData('Text',txt_cr+'rn'+copy_cr+'rn'); 
-    // console.log('txt_cr ： '+txt_cr);
-// } 
-
-// setTimeout(function(){
-//     try {
-//         var successful = document.execCommand('copy');
-//         console.dir(successful);
-//         var msg = successful ? 'successful' : 'unsuccessful';
-//         console.log('Copying text command was ' + msg);
-//       } catch (err) {
-//         console.log('Oops, unable to copy');
-//       }
-// },5000);
-//document.execCommand('cut'/'copy') 被拒绝，因为它不是从短时运行的用户生成的事件处理程序内部进行调用。
-
-// setInterval(()=>{
-    // alert(window.clipboardData.getData("Text"));
-// },3000);
-
-
+//zheng jie
 $(document).ready(function(){
     $(document.body).bind({  
-        copy: function(e) {//copy事件
-            console.dir(e)  
+        copy: function(e) {//copy事件 
             var cpTxt = "复制的数据";
             var clipboardData = window.clipboardData; //for IE  
             if (!clipboardData) { // for chrome  
                 clipboardData = e.originalEvent.clipboardData;  
             }  
-            let copyData = e.clipboardData.getData('text');//可以获取用户选中复制的数据  
-            console.log('copyData:'+copyData);
+            // let copyData = e.clipboardData.getData('text');//可以获取用户选中复制的数据  
+            // console.log('copyData:'+copyData);
 
             clipboardData.setData('Text', cpTxt);  
 
             e.preventDefault();
 
-            // alert(cpTxt);  
-            // $('#message').text('Copy Data : ' + cpTxt);  
             return false;//否则设不生效  
         },
-        paste: function(e) {//paste事件  
-            // alert("paste");
-            var eve = e.originalEvent;
-            var cp = eve.clipboardData;  
-            var data = null;  
-            var clipboardData = window.clipboardData; // IE  
-            if (!clipboardData) { //chrome  
-                clipboardData = e.originalEvent.clipboardData  
-            }  
-            data = clipboardData.getData('Text');  
-            // $('#message').html(data); 
-            console.log(data); 
-        }  
+        paste: checkClipboardPaste
     }); 
 });
 
+//paste
+function checkClipboardPaste(e){
+    console.log('Ctrl + V'); 
+    
+    var data = getClipboardData(e).getData('Text'); 
+    console.log(data); 
+}
 
-function getClipboardData(){
+// alert(document.body.id);
+function getClipboardData(e){
     var clipboardData = window.clipboardData; // IE  
     if (!clipboardData) { //chrome  
         clipboardData = e.originalEvent.clipboardData  
@@ -73,29 +42,17 @@ function getClipboardData(){
     return clipboardData
 }
 
-
 function checkClipboardCopy(data,result){
     console.log('Ctrl + C');
-    // console.log(document.selection.createRange().text);
-    // console.log(window.clipboardData.getData("Text"));
-    // console.dir(result);
-    // console.dir(data);
 }
 function checkClipboardCut(){
     console.log('Ctrl + X');
 }
-function checkClipboardPaste(data){
-    console.log('Ctrl + V');
-    // console.dir(data);
-    // console.log(data.toString());
-    // let dataStr = data.toString();
-    // console.log('----------------');
-    alert(getClipboard());
-}
+
 
 function checkClipboardLoad(e){
     console.log('check clipboard load......');
-    console.dir(e)
+    // console.dir(e)
 }
 
 
@@ -138,6 +95,7 @@ function readClipboardData() {
 
     document.getElementById("txtContent").value = str;
 }
+
 
 
 /**
