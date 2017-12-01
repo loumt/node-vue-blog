@@ -6,10 +6,13 @@
   </head>
   <body>
     <h1><%= title %></h1>
+    <!-- D:\rcp\win32-sanlogic-rcp\sanrcpclient.exe 192.168.20.50:10001?192.168.20.73@5900 -->
+    <a href="Sanlogic://">打开本地应用</a>
+    <button onclick="copyToClipboard('11111222')">复制进剪切板</button>
     <input type="button" value="读取剪贴板内容" onclick="readClipboardData();" />
-    <br />
+    <br/>
     <textarea rows="20" cols="60" id="txtContent"></textarea>
   </body>
-  <script src='/javascript/jquery.min.js'></script>
+  <script src='/javascript/jquery.1.2.4.min.js'></script>
   <script src='/javascript/clipBoard.js'></script>
 </html>

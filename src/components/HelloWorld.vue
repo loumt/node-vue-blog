@@ -11,6 +11,20 @@
       <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
     </ul>
     <h2>Ecosystem</h2>
+    <div id="select_frame">
+    
+    <div ref="select_frame" class="box">
+        将文件拖拽到这里
+    </div>
+        <div class="filebox">
+        <p v-if="fileList.length<1">暂无文件</p>
+        <ol>
+            <li v-for="item in fileList">{{item.name}}</li>
+        </ol>
+        </div>
+        <button style="outline:none;float:right;"  type="submit" class="btn btn-primary">解 析</button>
+    </div>
+
     <ul>
       <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
       <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
@@ -25,8 +39,49 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      fileList: []
     }
+  },
+  methods: {
+
+  },
+  mounted () {
+    this.$refs.select_frame.ondragleave = (e) => {
+      // 阻止离开时的浏览器默认行为
+      e.preventDefault()
+    };
+    this.$refs.select_frame.ondrop = (e) => {
+      // 阻止拖放后的浏览器默认行为
+      e.preventDefault()
+      // 获取文件对象
+      const data = e.dataTransfer.files
+      if (data.length < 1) {
+        // 检测是否有文件拖拽到页面
+        return
+      }
+      console.log(e.dataTransfer.files)
+      const formData = new FormData()
+      for (let i = 0; i < e.dataTransfer.files.length; i++) {
+        console.log(e.dataTransfer.files[i])
+        if (e.dataTransfer.files[i].name.indexOf('map') === -1) {
+          alert('只允许上传.map文件')
+          return
+        }
+        formData.append('uploadfile', e.dataTransfer.files[i], e.dataTransfer.files[i].name)
+      }
+      this.fileList = this.fileList.concat(e.dataTransfer.files[0])
+      console.log(formData, this.fileList, e.dataTransfer.files[0])
+    };
+    this.$refs.select_frame.ondragenter = (e) => {
+      // 阻止拖入时的浏览器默认行为
+      e.preventDefault()
+      this.$refs.select_frame.border = '2px dashed red'
+    };
+    this.$refs.select_frame.ondragover = (e) => {
+      // 阻止拖来拖去的浏览器默认行为
+      e.preventDefault()
+    };
   }
 }
 </script>
