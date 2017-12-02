@@ -47,10 +47,10 @@ module.exports = {
 
   build: {
     // Template for index.html
-    index: path.resolve(__dirname, '../server/views/mainPage.ejs'),
+    index: path.resolve(__dirname, '../feellyblog/views/mainPage.ejs'),
 
     // Paths
-    assetsRoot: path.resolve(__dirname, '../server/public'),
+    assetsRoot: path.resolve(__dirname, '../feellyblog/public'),
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
 

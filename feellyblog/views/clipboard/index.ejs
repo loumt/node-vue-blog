@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body id ='bodyId'>
+    <h1><%= title %></h1>
+    <button onclick="copyToClipboard('11111222')">复制进剪切板</button>
+    <input type="button" value="读取剪贴板内容" onclick="readClipboardData();" />
+    <br/>
+    <textarea rows="20" cols="60" id="txtContent"></textarea>
+  </body>
+  <script src='/javascript/jquery.1.2.4.min.js'></script>
+  <script src='/javascript/clipBoard.js'></script>
+</html>
