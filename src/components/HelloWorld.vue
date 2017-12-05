@@ -27,8 +27,11 @@ export default {
       fileList: []
     }
   },
+  mounted: function(){
+    console.log('mounts method!!!')
+  }
   methods: {
-
+    
   }
 }
 </script>
