@@ -1,22 +1,19 @@
-var express = require('express');
-var router = express.Router();
+var express = require('express')
+var router = express.Router()
 
-
-//rcp
-const rcp = require('./module/rcp/rcp');
-//clipboard
-const clip = require('./module/clipboard/clipboard');
+// rcp
+const rcp = require('./module/rcp/rcp')
+// clipboard
+const clip = require('./module/clipboard/clipboard')
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  //vue page
-  res.render('mainPage');
-});
+router.get('/', function (req, res, next) {
+  // vue page
+  res.render('mainPage')
+})
 
-rcp(router);
+rcp(router)
 
-clip(router);
+clip(router)
 
-
-
-module.exports = router;
+module.exports = router

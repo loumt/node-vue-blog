@@ -3,7 +3,6 @@
 // window.addEventListener('paste', this.checkClipboardPaste.bind(this), true); //ctrl + v
 // window.addEventListener('load', this.checkClipboardLoad.bind(this), true); // start at once
 
-
 // document.getElementsByName('body').oncopy = function (e) {
 //   var cpTxt = "复制的数据";
 //   var clipboardData = window.clipboardData; //for IE  
@@ -19,8 +18,6 @@
 
 //   return false; //否则设不生效  
 // }
-
-
 
 //zheng jie
 // $(document).ready(function(){
@@ -45,82 +42,79 @@
 // });
 
 var EventUtil = {
-    addHandler: function (element, type, handler) {
-        if(!element)
-            return false;
-        if (element.addEventListener) {
-            element.addEventListener(type, handler, false);
-        } else if (element.attachEvent) {
-            element.attachEvent("on" + type, handler);
-        } else {
-            element["on" + type] = handler;
-        }
-    },
-    getEvent: function (event) {
-        return event ? event : window.event;
-    },
-    getClipboardText: function (event) {
-        var clipboardData = (event.clipboardData || window.clipboardData);
-        return clipboardData.getData("text");
-    },
-    setClipboardText: function (event, value) {
-        if (event.clipboardData) {
-            return event.clipboardData.setData("text/plain", value);
-        } else if (window.clipboardData) {
-            return window.clipboardData.setData("text", value);
-        }
-    },
-    preventDefault: function (event) {
-        if (event.preventDefault) {
-            event.preventDefault();
-        } else {
-            event.returnValue = false;
-        }
+  addHandler: function (element, type, handler) {
+    if (!element)
+      return false
+    if (element.addEventListener) {
+      element.addEventListener(type, handler, false)
+    } else if (element.attachEvent) {
+      element.attachEvent('on' + type, handler)
+    } else {
+      element['on' + type] = handler
     }
-};
-EventUtil.addHandler(document,'copy',function(e){
-    EventUtil.setClipboardText(EventUtil.getEvent(e),'3333333');
-    EventUtil.preventDefault(e);
+  },
+  getEvent: function (event) {
+    return event ? event : window.event
+  },
+  getClipboardText: function (event) {
+    var clipboardData = (event.clipboardData || window.clipboardData)
+    return clipboardData.getData('text')
+  },
+  setClipboardText: function (event, value) {
+    if (event.clipboardData) {
+      return event.clipboardData.setData('text/plain', value)
+    } else if (window.clipboardData) {
+      return window.clipboardData.setData('text', value)
+    }
+  },
+  preventDefault: function (event) {
+    if (event.preventDefault) {
+      event.preventDefault()
+    } else {
+      event.returnValue = false
+    }
+  }
+}
+EventUtil.addHandler(document, 'copy', function (e) {
+  EventUtil.setClipboardText(EventUtil.getEvent(e), '3333333')
+  EventUtil.preventDefault(e)
 })
 
-setTimeout(()=>{
-    console.log('to copy');
-    document.execCommand("Copy")
-},5000);
-
+setTimeout(() => {
+  console.log('to copy')
+  document.execCommand('Copy')
+}, 5000)
 
 //paste
-function checkClipboardPaste(e) {
-  console.log('Ctrl + V');
+function checkClipboardPaste (e) {
+  console.log('Ctrl + V')
 
-  var data = getClipboardData(e).getData('Text');
-  console.log(data);
+  var data = getClipboardData(e).getData('Text')
+  console.log(data)
 }
 
 // alert(document.body.id);
-function getClipboardData(e) {
-  var clipboardData = window.clipboardData; // IE  
+function getClipboardData (e) {
+  var clipboardData = window.clipboardData // IE  
   if (!clipboardData) { //chrome  
     clipboardData = e.originalEvent.clipboardData
   }
   return clipboardData
 }
 
-function checkClipboardCopy(e) {
-  console.log('Ctrl + C');
+function checkClipboardCopy (e) {
+  console.log('Ctrl + C')
   getClipboardData().setData('Text', 'This is a simple data')
 }
 
-function checkClipboardCut() {
-  console.log('Ctrl + X');
+function checkClipboardCut () {
+  console.log('Ctrl + X')
 }
 
-
-function checkClipboardLoad(e) {
-  console.log('check clipboard load......');
+function checkClipboardLoad (e) {
+  console.log('check clipboard load......')
   // console.dir(e)
 }
-
 
 // function getClipboard() {
 //     if (window.clipboardData) {
@@ -154,7 +148,6 @@ function checkClipboardLoad(e) {
 //     return null;
 // }
 
-
 // function readClipboardData() {
 //     var str = getClipboard();
 //     var len = str.split("\n");//获取行数
@@ -162,12 +155,10 @@ function checkClipboardLoad(e) {
 //     document.getElementById("txtContent").value = str;
 // }
 
-
-
 /**
  * OK
  * 为剪切板进行赋值
- * @param {*} text 
+ * @param {*} text
  */
 // function copyToClipboard(text) {
 //     console.log('copyToClipboard......');
@@ -194,7 +185,7 @@ function checkClipboardLoad(e) {
 //     }
 // }
 
-let func = null;
+let func = null
 
 /**
  * OK
@@ -219,7 +210,6 @@ let func = null;
 //     e.preventDefault();
 // });
 
-
-function addToClip(text) {
+function addToClip (text) {
   window.clipboardData.setData('text/plain', 'hhhhhhhhhhhhhhhhhhhhhhh')
 }

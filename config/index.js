@@ -15,14 +15,12 @@ module.exports = {
     // Various Dev Server settings
     host: '192.168.16.23', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
-    autoOpenBrowser: true,
+    autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
-
-    useEslint: true,
-    // If true, eslint errors and warnings will also be shown in the error overlay
-    // in the browser.
+    // use Eslint
+    useEslint: false,
     showEslintErrorsInOverlay: false,
 
     /**
