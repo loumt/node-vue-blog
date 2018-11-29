@@ -1,5 +1,6 @@
 .DS_Store
-node_modules/
+src/blog-backend/node_modules/
+src/blog-view/node_modules/
 /dist/
 npm-debug.log*
 yarn-debug.log*
